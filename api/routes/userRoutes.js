@@ -4,6 +4,4 @@ const router = express.Router();
 
 router.get("/", test);
 
-// module.exports = router;
-
 export default router;
