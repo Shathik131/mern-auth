@@ -1,6 +1,5 @@
 import User from "../models/userModels.js";
 import bcrypt from "bcryptjs";
-import { errorHandler } from "../utils/error.js";
 
 export const signUp = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -15,12 +14,6 @@ export const signUp = async (req, res, next) => {
       data: newUser,
     });
   } catch (err) {
-    // default error handling
-    // res.send("data error")
-    // res.status(500).json({message: "something went wrong"})
-    // next(err)
-
-    // custom error handling
-    next(errorHandler(300, "something went wrong"));
+    next(err);
   }
 };
