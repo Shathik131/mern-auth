@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -24,11 +26,14 @@ const SignUp = () => {
         .then((res) => {
           // console.log(res.data);
           setFormData(res.data);
-          toast("Data Added Success", { type: "success", autoClose: 1500 });
+          toast("Sign-Up Success", { type: "success", autoClose: 1500 });
+          setTimeout(() => {
+            navigate("/sign-in");
+          }, 2500);
         })
         .catch((err) => {
           console.log(err);
-          toast("Data Added Failed", { type: "error", autoClose: 1500 });
+          toast("Sign-Up Failed", { type: "error", autoClose: 1500 });
         });
 
       setLoading(false);
